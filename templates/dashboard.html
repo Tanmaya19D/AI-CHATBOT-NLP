@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot Analytics Dashboard</title>
+
+```
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins',sans-serif;
+    }
+
+    body{
+        background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+        color:white;
+        min-height:100vh;
+        padding-bottom:50px;
+    }
+
+    .header{
+        text-align:center;
+        padding:40px;
+    }
+
+    .header h1{
+        font-size:40px;
+        margin-bottom:10px;
+    }
+
+    .header p{
+        color:#cbd5e1;
+    }
+
+    .nav{
+        text-align:center;
+        margin-bottom:30px;
+    }
+
+    .nav a{
+        color:white;
+        text-decoration:none;
+        margin:0 15px;
+        font-weight:600;
+        transition:0.3s;
+    }
+
+    .nav a:hover{
+        color:#60a5fa;
+    }
+
+    .dashboard{
+        width:90%;
+        margin:auto;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+        gap:25px;
+    }
+
+    .card{
+        background:rgba(255,255,255,0.08);
+        backdrop-filter:blur(10px);
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:20px;
+        padding:30px;
+        text-align:center;
+        transition:0.3s;
+    }
+
+    .card:hover{
+        transform:translateY(-10px);
+        box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .card h2{
+        margin-bottom:15px;
+        font-size:22px;
+    }
+
+    .number{
+        font-size:55px;
+        font-weight:bold;
+    }
+
+    .total{
+        color:#3b82f6;
+    }
+
+    .positive{
+        color:#22c55e;
+    }
+
+    .neutral{
+        color:#facc15;
+    }
+
+    .negative{
+        color:#ef4444;
+    }
+
+    .chart-container{
+        width:80%;
+        margin:50px auto;
+    }
+
+    .chart-container h2{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    canvas{
+        background:white;
+        border-radius:20px;
+        padding:20px;
+    }
+
+    .table-container{
+        width:90%;
+        margin:50px auto;
+    }
+
+    .chat-table{
+        width:100%;
+        border-collapse:collapse;
+        overflow:hidden;
+        border-radius:15px;
+        background:white;
+        color:black;
+    }
+
+    .chat-table th{
+        background:#2563eb;
+        color:white;
+        padding:15px;
+    }
+
+    .chat-table td{
+        padding:12px;
+        text-align:center;
+        border-bottom:1px solid #ddd;
+    }
+
+    .chat-table tr:hover{
+        background:#f3f4f6;
+    }
+
+    .footer{
+        text-align:center;
+        margin-top:40px;
+        color:#cbd5e1;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="header">
+    <h1>📊 AI Chatbot Analytics Dashboard</h1>
+    <p>Real-time statistics of chatbot interactions</p>
+</div>
+
+<div class="nav">
+    <a href="/">Home</a>
+    <a href="/history">History</a>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Total Chats</h2>
+        <div class="number total">{{ total_chats }}</div>
+    </div>
+
+    <div class="card">
+        <h2>Positive</h2>
+        <div class="number positive">{{ positive }}</div>
+    </div>
+
+    <div class="card">
+        <h2>Neutral</h2>
+        <div class="number neutral">{{ neutral }}</div>
+    </div>
+
+    <div class="card">
+        <h2>Negative</h2>
+        <div class="number negative">{{ negative }}</div>
+    </div>
+
+</div>
+
+<div class="chart-container">
+    <h2>Sentiment Distribution</h2>
+    <canvas id="sentimentChart"></canvas>
+</div>
+
+<div class="chart-container">
+    <h2>Chat Statistics</h2>
+    <canvas id="chatChart"></canvas>
+</div>
+
+<div class="table-container">
+
+    <h2 style="text-align:center; margin-bottom:20px;">
+        Recent Chats
+    </h2>
+
+    <table class="chat-table">
+
+        <tr>
+            <th>Message</th>
+            <th>Sentiment</th>
+            <th>Time</th>
+        </tr>
+
+        {% for chat in recent_chats %}
+        <tr>
+            <td>{{ chat[0] }}</td>
+            <td>{{ chat[1] }}</td>
+            <td>{{ chat[2] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+<div class="footer">
+    AI Chatbot Analytics Dashboard
+</div>
+
+<script>
+
+    const positive = Number("{{ positive }}");
+    const neutral = Number("{{ neutral }}");
+    const negative = Number("{{ negative }}");
+    const totalChats = Number("{{ total_chats }}");
+
+    new Chart(
+        document.getElementById("sentimentChart"),
+        {
+            type: "pie",
+            data: {
+                labels: ["Positive", "Neutral", "Negative"],
+                datasets: [{
+                    data: [positive, neutral, negative],
+                    backgroundColor: [
+                        "#22c55e",
+                        "#facc15",
+                        "#ef4444"
+                    ]
+                }]
+            }
+        }
+    );
+
+    new Chart(
+        document.getElementById("chatChart"),
+        {
+            type: "bar",
+            data: {
+                labels: [
+                    "Total Chats",
+                    "Positive",
+                    "Neutral",
+                    "Negative"
+                ],
+                datasets: [{
+                    label: "Analytics",
+                    data: [
+                        totalChats,
+                        positive,
+                        neutral,
+                        negative
+                    ],
+                    backgroundColor: [
+                        "#3b82f6",
+                        "#22c55e",
+                        "#facc15",
+                        "#ef4444"
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        }
+    );
+
+</script>
+```
+
+</body>
+</html>

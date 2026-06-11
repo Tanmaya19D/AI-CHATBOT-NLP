@@ -1,0 +1,345 @@
+{
+"intents": [
+{
+"tag": "greeting",
+"patterns": [
+"hi",
+"hello",
+"hey",
+"hey there",
+"hello there",
+"good morning",
+"good afternoon",
+"good evening",
+"greetings",
+"yo",
+"hii",
+"hola",
+"sup",
+"what's up",
+"how are you",
+"nice to meet you",
+"hey bot",
+"hello bot",
+"hi chatbot",
+"good day"
+],
+"responses": [
+"Hello!",
+"Hi there!",
+"Welcome!",
+"Nice to meet you!"
+]
+},
+
+{
+  "tag": "goodbye",
+  "patterns": [
+    "bye",
+    "goodbye",
+    "see you",
+    "see you later",
+    "take care",
+    "have a nice day",
+    "catch you later",
+    "talk to you later",
+    "bye bye",
+    "see ya",
+    "good night",
+    "farewell",
+    "i am leaving",
+    "got to go",
+    "have a good day",
+    "bye",
+"goodbye",
+"bye bye",
+"see you",
+"see ya",
+"farewell",
+"take care",
+"good night",
+"catch you later",
+"i am leaving",
+"got to go",
+"talk later",
+"talk to you later",
+"see you soon",
+"see you tomorrow",
+"have a nice day",
+"have a great day",
+"bye friend",
+"leaving now",
+"quit"
+  ],
+  "responses": [
+    "Goodbye!",
+    "See you later!",
+    "Take care!",
+    "Have a great day!"
+  ]
+},
+
+{
+  "tag": "thanks",
+  "patterns": [
+    "thanks",
+    "thank you",
+    "thanks a lot",
+    "thank you so much",
+    "appreciate it",
+    "many thanks",
+    "thx",
+    "ty",
+    "thank you bot",
+    "thanks for helping",
+    "thanks buddy",
+    "thanks chatbot"
+  ],
+  "responses": [
+    "You're welcome!",
+    "Happy to help!",
+    "Anytime!",
+    "Glad I could help!"
+  ]
+},
+
+{
+  "tag": "about",
+  "patterns": [
+    "who are you",
+    "what are you",
+    "tell me about yourself",
+    "introduce yourself",
+    "what is your name",
+    "about you",
+    "who created you",
+    "what do you do",
+    "can you introduce yourself",
+    "tell me who you are",
+    "what kind of chatbot are you",
+    "are you ai",
+    "are you a bot",
+    "your introduction",
+    "tell me something about you"
+  ],
+  "responses": [
+    "I am an NLP chatbot built using Python and Flask.",
+    "I am an AI chatbot designed to answer questions and assist users.",
+    "I can help answer questions related to programming, careers, and more."
+  ]
+},
+
+{
+  "tag": "emotion",
+  "patterns": [
+    "i am scared",
+    "i am sad",
+    "i am stressed",
+    "i am depressed",
+    "i feel lonely",
+    "i am happy",
+    "i am excited",
+    "im scared",
+    "i'm scared",
+    "scared",
+    "feeling scared",
+    "i am worried",
+    "i feel anxious",
+    "i am nervous",
+    "i am upset"
+  ],
+  "responses": [
+    "I understand how you feel.",
+    "Would you like to talk about it?",
+    "I'm here to listen."
+  ]
+},
+
+{
+  "tag": "career",
+  "patterns": [
+    "internship",
+    "i need internship",
+    "how to get internship",
+    "placement",
+    "job",
+    "career advice",
+    "resume tips",
+    "interview tips",
+    "crack interviews",
+    "how to crack interviews",
+    "placement preparation",
+    "campus placement",
+    "software job",
+    "job preparation",
+    "career guidance",
+    "how to get a job",
+    "resume building",
+    "linkedin tips",
+    "interview preparation",
+    "off campus placement",
+    "best internship",
+    "high paying internship",
+    "software engineer job",
+    "freshers job"
+  ],
+  "responses": [
+    "Build projects and practice DSA regularly.",
+    "Keep improving your GitHub portfolio.",
+    "Focus on skills and internships.",
+    "Create a strong resume and LinkedIn profile."
+  ]
+},
+
+{
+  "tag": "programming",
+  "patterns": [
+    "python",
+    "what is python",
+    "python language",
+    "python programming",
+    "tell me about python",
+    "explain python",
+    "do you know python",
+    "python libraries",
+    "python framework",
+    "what can python do",
+    "why use python",
+    "python uses",
+    "learn python",
+    "python coding",
+    "python development"
+  ],
+  "responses": [
+    "Python is a popular programming language used for AI, ML, Web Development and Automation.",
+    "Python is one of the most widely used programming languages.",
+    "Python is beginner-friendly and powerful for software development."
+  ]
+},
+
+{
+  "tag": "html",
+  "patterns": [
+    "html",
+    "what is html",
+    "html language",
+    "tell me about html",
+    "explain html",
+    "html full form",
+    "what does html mean",
+    "define html",
+    "about html",
+    "html basics",
+    "learn html",
+    "html tags",
+    "html webpage",
+    "html code",
+    "html tutorial"
+  ],
+  "responses": [
+    "HTML stands for HyperText Markup Language and is used to structure web pages."
+  ]
+},
+
+{
+  "tag": "css",
+  "patterns": [
+    "css",
+    "what is css",
+    "css language",
+    "tell me about css",
+    "explain css",
+    "define css",
+    "css full form",
+    "what does css mean",
+    "css styling",
+    "css design",
+    "css webpage",
+    "css tutorial",
+    "learn css",
+    "css basics",
+    "css properties"
+  ],
+  "responses": [
+    "CSS stands for Cascading Style Sheets and is used to style web pages."
+  ]
+},
+
+{
+  "tag": "javascript",
+  "patterns": [
+    "javascript",
+    "js",
+    "what is javascript",
+    "tell me about javascript",
+    "javascript language",
+    "define javascript",
+    "explain javascript",
+    "javascript basics",
+    "learn javascript",
+    "javascript tutorial",
+    "what does javascript do",
+    "javascript programming",
+    "javascript code",
+    "js language",
+    "about javascript"
+  ],
+  "responses": [
+    "JavaScript is used to make web pages interactive and dynamic."
+  ]
+},
+
+{
+  "tag": "ai_ml",
+  "patterns": [
+    "what is ai",
+    "artificial intelligence",
+    "machine learning",
+    "deep learning",
+    "what is ml",
+    "ai projects",
+    "ml projects",
+    "ai engineer",
+    "learn machine learning",
+    "learn ai",
+    "neural networks",
+    "computer vision",
+    "nlp",
+    "generative ai",
+    "chatgpt"
+  ],
+  "responses": [
+    "AI enables machines to perform tasks that normally require human intelligence.",
+    "Machine Learning is a subset of AI that allows systems to learn from data.",
+    "AI and ML are among the fastest-growing fields in technology."
+  ]
+},
+
+{
+  "tag": "insult",
+  "patterns": [
+    "dumb",
+    "stupid",
+    "idiot",
+    "useless",
+    "bad bot",
+    "worst chatbot",
+    "you are dumb",
+    "you are stupid",
+    "not helpful",
+    "fool",
+    "annoying bot",
+    "poor chatbot",
+    "waste chatbot",
+    "bad assistant",
+    "terrible bot"
+  ],
+  "responses": [
+    "I'm still learning and improving.",
+    "I'll try to do better.",
+    "Let's continue the conversation.",
+    "Thanks for the feedback."
+  ]
+}
+]
+}

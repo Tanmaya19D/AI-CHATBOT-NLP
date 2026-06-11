@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat History</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            padding:30px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#1e293b;
+        }
+
+        th, td{
+            border:1px solid #444;
+            padding:12px;
+            text-align:left;
+        }
+
+        th{
+            background:#2563eb;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Chat History</h1>
+
+<table>
+
+<tr>
+    <th>User Message</th>
+    <th>Bot Response</th>
+</tr>
+
+{% for chat in chats %}
+
+<tr>
+    <td>{{ chat[0] }}</td>
+    <td>{{ chat[1] | safe }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
