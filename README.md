@@ -2,6 +2,20 @@
 
 An intelligent NLP-based chatbot built using Python, Flask, Scikit-learn, NLTK, SQLite, and VADER Sentiment Analysis.
 
+## 📸 Project Screenshots
+
+### Chatbot Interface
+
+![Chatbot Interface](screenshots/chatbot-home.png)
+
+### Chat History
+
+![Chat History](screenshots/chat-history.png)
+
+### Analytics Dashboard
+
+![Analytics Dashboard](screenshots/dashboard.png)
+
 ## 🚀 Features
 
 * Intent-based chatbot using Machine Learning
