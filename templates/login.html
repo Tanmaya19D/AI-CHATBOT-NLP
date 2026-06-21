@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AI Chatbot</title>
+
+```
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins',sans-serif;
+    }
+
+    body{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        background:linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b,
+            #334155
+        );
+    }
+
+    .login-container{
+
+        width:400px;
+
+        background:rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(15px);
+
+        border:1px solid rgba(255,255,255,0.15);
+
+        border-radius:20px;
+
+        padding:40px;
+
+        color:white;
+
+        box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .logo{
+
+        text-align:center;
+        margin-bottom:25px;
+    }
+
+    .logo h1{
+        font-size:30px;
+    }
+
+    .logo p{
+        color:#cbd5e1;
+        margin-top:8px;
+    }
+
+    .input-group{
+        margin-bottom:20px;
+    }
+
+    .input-group label{
+        display:block;
+        margin-bottom:8px;
+        font-size:14px;
+    }
+
+    .input-group input{
+
+        width:100%;
+        padding:14px;
+
+        border:none;
+        outline:none;
+
+        border-radius:10px;
+
+        background:rgba(255,255,255,0.12);
+
+        color:white;
+    }
+
+    .input-group input::placeholder{
+        color:#cbd5e1;
+    }
+
+    .login-btn{
+
+        width:100%;
+
+        padding:14px;
+
+        border:none;
+
+        border-radius:10px;
+
+        background:#3b82f6;
+
+        color:white;
+
+        font-size:16px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+        transition:0.3s;
+    }
+
+    .login-btn:hover{
+
+        background:#2563eb;
+        transform:translateY(-2px);
+    }
+
+    .extra-links{
+
+        margin-top:20px;
+
+        text-align:center;
+    }
+
+    .extra-links a{
+
+        color:#60a5fa;
+
+        text-decoration:none;
+    }
+
+    .extra-links a:hover{
+        text-decoration:underline;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="login-container">
+
+    <div class="logo">
+
+        <h1>🤖 AI Chatbot</h1>
+
+        <p>Login to continue</p>
+
+    </div>
+
+    <form method="POST">
+
+        <div class="input-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            class="login-btn"
+        >
+            Login
+        </button>
+
+    </form>
+
+    <div class="extra-links">
+
+        <p>
+            Don't have an account?
+            <a href="/register">Register</a>
+        </p>
+
+    </div>
+
+</div>
+```
+
+</body>
+
+</html>
