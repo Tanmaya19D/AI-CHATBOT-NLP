@@ -1,108 +1,107 @@
-from pathlib import Path
 import sqlite3
 
 from werkzeug.security import (
-    generate_password_hash,
-    check_password_hash
+    check_password_hash,
+    generate_password_hash
 )
 
-# ==========================================
-# Database Path
-# ==========================================
+from src.database import get_connection
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-DATABASE_DIR = BASE_DIR / "database"
-DATABASE_DIR.mkdir(exist_ok=True)
-
-DB_PATH = DATABASE_DIR / "chat_history.db"
-
-
-def get_connection():
-    return sqlite3.connect(DB_PATH)
-
-
-# ==========================================
-# Create Users Table
-# ==========================================
 
 def create_users_table():
+    connection = get_connection()
+    cursor = connection.cursor()
 
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS users(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """
     )
-    """)
 
-    conn.commit()
-    conn.close()
+    connection.commit()
+    connection.close()
 
-
-# ==========================================
-# Register User
-# ==========================================
 
 def register_user(username, email, password):
+    username = username.strip()
+    email = email.strip().lower()
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    hashed_password = generate_password_hash(
+        password,
+        method="scrypt"
+    )
 
-    hashed_password = generate_password_hash(password)
+    connection = get_connection()
+    cursor = connection.cursor()
 
     try:
-
-        cursor.execute("""
-        INSERT INTO users(
-            username,
-            email,
-            password
+        cursor.execute(
+            """
+            INSERT INTO users(
+                username,
+                email,
+                password
+            )
+            VALUES (?, ?, ?)
+            """,
+            (
+                username,
+                email,
+                hashed_password
+            )
         )
-        VALUES (?, ?, ?)
-        """, (
-            username,
-            email,
-            hashed_password
-        ))
 
-        conn.commit()
+        connection.commit()
 
         return True
 
     except sqlite3.IntegrityError:
+        connection.rollback()
 
         return False
 
     finally:
+        connection.close()
 
-        conn.close()
-
-
-# ==========================================
-# Login User
-# ==========================================
 
 def login_user(username, password):
+    username = username.strip()
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    connection = get_connection()
+    cursor = connection.cursor()
 
-    cursor.execute("""
-    SELECT id, password
-    FROM users
-    WHERE username = ?
-    """, (username,))
+    cursor.execute(
+        """
+        SELECT
+            id,
+            username,
+            password
+        FROM users
+        WHERE LOWER(username) = LOWER(?)
+        """,
+        (username,)
+    )
 
     user = cursor.fetchone()
 
-    conn.close()
+    connection.close()
 
-    if user and check_password_hash(user[1], password):
-        return user[0]
+    if user is None:
+        return None
+
+    user_id = user[0]
+    stored_password = user[2]
+
+    if check_password_hash(
+        stored_password,
+        password
+    ):
+        return user_id
 
     return None

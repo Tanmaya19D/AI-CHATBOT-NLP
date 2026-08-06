@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>AI Chatbot Login</title>
 
     <style>
-
         *{
             margin:0;
             padding:0;
             box-sizing:border-box;
-            font-family:'Segoe UI',sans-serif;
+            font-family:"Segoe UI",sans-serif;
         }
 
         body{
-            height:100vh;
+            min-height:100vh;
             display:flex;
             justify-content:center;
             align-items:center;
+            padding:20px;
+
             background:linear-gradient(
                 135deg,
                 #0f172a,
@@ -28,36 +35,79 @@
         }
 
         .card{
-            width:400px;
+            width:100%;
+            max-width:430px;
             background:white;
             padding:40px;
             border-radius:20px;
-            box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.3);
         }
 
         h2{
             text-align:center;
             margin-bottom:25px;
             color:#1e293b;
+            font-size:30px;
+        }
+
+        .error{
+            padding:12px;
+            margin-bottom:18px;
+            border-radius:9px;
+
+            background:#fee2e2;
+            border:1px solid #fecaca;
+            color:#b91c1c;
+
+            text-align:center;
+            font-size:14px;
+        }
+
+        .input-group{
+            margin-bottom:16px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:7px;
+            color:#334155;
+            font-weight:600;
         }
 
         input{
             width:100%;
             padding:14px;
-            margin-bottom:15px;
-            border:1px solid #ddd;
+
+            border:1px solid #d1d5db;
             border-radius:10px;
+
             font-size:15px;
+            outline:none;
+        }
+
+        input:focus{
+            border-color:#2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,0.12);
         }
 
         button{
             width:100%;
             padding:14px;
+
             border:none;
             border-radius:10px;
+
             background:#2563eb;
             color:white;
+
             font-size:16px;
+            font-weight:600;
             cursor:pointer;
         }
 
@@ -65,17 +115,21 @@
             background:#1d4ed8;
         }
 
-        a{
+        .register-link{
             display:block;
+            margin-top:18px;
+
             text-align:center;
-            margin-top:15px;
             text-decoration:none;
+
             color:#2563eb;
-            font-weight:bold;
+            font-weight:700;
         }
 
+        .register-link:hover{
+            text-decoration:underline;
+        }
     </style>
-
 </head>
 
 <body>
@@ -84,19 +138,50 @@
 
         <h2>🤖 AI Chatbot Login</h2>
 
-        <form method="POST">
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required>
+        <form
+            method="POST"
+            action="{{ url_for('login') }}"
+        >
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required>
+            <div class="input-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
 
             <button type="submit">
                 Login
@@ -104,7 +189,10 @@
 
         </form>
 
-        <a href="/register">
+        <a
+            class="register-link"
+            href="{{ url_for('register') }}"
+        >
             Create Account
         </a>
 

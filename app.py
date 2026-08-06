@@ -32,29 +32,23 @@ from src.database import (
 from src.sentiment import get_sentiment
 
 
-# ==========================================================
-# FLASK APPLICATION
-# ==========================================================
-
 app = Flask(__name__)
 
-app.secret_key = os.environ.get(
+app.config["SECRET_KEY"] = os.environ.get(
     "SECRET_KEY",
-    "chatbot_secret_key_2026"
+    "development-secret-key-change-this"
 )
 
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = (
+    os.environ.get("RENDER") == "true"
+)
 
-# ==========================================================
-# DATABASE INITIALIZATION
-# ==========================================================
 
 create_database()
 create_users_table()
 
-
-# ==========================================================
-# LOGIN REQUIRED DECORATOR
-# ==========================================================
 
 def login_required(route_function):
 
@@ -74,14 +68,7 @@ def login_required(route_function):
     return protected_route
 
 
-# ==========================================================
-# REGISTER
-# ==========================================================
-
-@app.route(
-    "/register",
-    methods=["GET", "POST"]
-)
+@app.route("/register", methods=["GET", "POST"])
 def register():
 
     if "user_id" in session:
@@ -90,6 +77,7 @@ def register():
         )
 
     error = None
+    success_message = None
 
     if request.method == "POST":
 
@@ -108,6 +96,11 @@ def register():
             ""
         )
 
+        confirm_password = request.form.get(
+            "confirm_password",
+            ""
+        )
+
         if not username:
             error = "Username is required."
 
@@ -120,11 +113,8 @@ def register():
         elif not email:
             error = "Email is required."
 
-        elif "@" not in email:
-            error = "Please enter a valid email."
-
-        elif not password:
-            error = "Password is required."
+        elif "@" not in email or "." not in email:
+            error = "Enter a valid email address."
 
         elif len(password) < 6:
             error = (
@@ -132,38 +122,36 @@ def register():
                 "6 characters."
             )
 
-        else:
+        elif password != confirm_password:
+            error = "Passwords do not match."
 
-            success = register_user(
+        else:
+            registered = register_user(
                 username,
                 email,
                 password
             )
 
-            if success:
-
-                return redirect(
-                    url_for("login")
+            if registered:
+                success_message = (
+                    "Account created successfully. "
+                    "You can now log in."
                 )
 
-            error = (
-                "Username or email already exists."
-            )
+            else:
+                error = (
+                    "That username or email "
+                    "already exists."
+                )
 
     return render_template(
         "register.html",
-        error=error
+        error=error,
+        success_message=success_message
     )
 
 
-# ==========================================================
-# LOGIN
-# ==========================================================
-
-@app.route(
-    "/login",
-    methods=["GET", "POST"]
-)
+@app.route("/login", methods=["GET", "POST"])
 def login():
 
     if "user_id" in session:
@@ -186,23 +174,21 @@ def login():
         )
 
         if not username or not password:
-
             error = (
-                "Username and password are required."
+                "Username and password "
+                "are required."
             )
 
         else:
-
             user_id = login_user(
                 username,
                 password
             )
 
-            if user_id:
-
+            if user_id is not None:
                 session.clear()
 
-                session["user_id"] = user_id
+                session["user_id"] = int(user_id)
                 session["username"] = username
 
                 return redirect(
@@ -210,7 +196,8 @@ def login():
                 )
 
             error = (
-                "Invalid username or password."
+                "Invalid username or password. "
+                "Create a new account first."
             )
 
     return render_template(
@@ -219,14 +206,9 @@ def login():
     )
 
 
-# ==========================================================
-# LOGOUT
-# ==========================================================
-
 @app.route("/logout")
 @login_required
 def logout():
-
     session.clear()
 
     return redirect(
@@ -234,28 +216,16 @@ def logout():
     )
 
 
-# ==========================================================
-# HOME PAGE
-# ==========================================================
-
 @app.route("/")
 @login_required
 def home():
-
     return render_template(
         "index.html",
         username=session.get("username")
     )
 
 
-# ==========================================================
-# CHAT
-# ==========================================================
-
-@app.route(
-    "/chat",
-    methods=["POST"]
-)
+@app.route("/chat", methods=["POST"])
 @login_required
 def chat():
 
@@ -265,11 +235,7 @@ def chat():
     ).strip()
 
     if not message:
-
-        return (
-            "Please enter a message.",
-            400
-        )
+        return "Please enter a message.", 400
 
     result = get_response(message)
 
@@ -320,7 +286,6 @@ def chat():
     if source_url.startswith(
         ("https://", "http://")
     ):
-
         safe_source_url = escape(
             source_url
         )
@@ -334,7 +299,6 @@ def chat():
         )
 
     else:
-
         source_display = str(
             source_title
         )
@@ -371,10 +335,6 @@ def chat():
     return final_response
 
 
-# ==========================================================
-# HISTORY
-# ==========================================================
-
 @app.route("/history")
 @login_required
 def history():
@@ -388,15 +348,9 @@ def history():
     )
 
 
-# ==========================================================
-# DASHBOARD
-# ==========================================================
-
 @app.route("/dashboard")
 @login_required
 def dashboard():
-
-    recent_chats = get_recent_chats()
 
     return render_template(
         "dashboard.html",
@@ -415,18 +369,28 @@ def dashboard():
             "Negative"
         ),
 
-        recent_chats=recent_chats,
+        recent_chats=get_recent_chats(),
 
         username=session.get("username")
     )
 
 
-# ==========================================================
-# RUN APPLICATION
-# ==========================================================
+@app.route("/health")
+def health():
+    return {
+        "status": "ok",
+        "message": "AI Chatbot is running"
+    }
+
 
 if __name__ == "__main__":
-
     app.run(
+        host="0.0.0.0",
+        port=int(
+            os.environ.get(
+                "PORT",
+                5000
+            )
+        ),
         debug=False
     )
