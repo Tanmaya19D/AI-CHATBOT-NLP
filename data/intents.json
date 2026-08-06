@@ -1,345 +1,730 @@
 {
-"intents": [
-{
-"tag": "greeting",
-"patterns": [
-"hi",
-"hello",
-"hey",
-"hey there",
-"hello there",
-"good morning",
-"good afternoon",
-"good evening",
-"greetings",
-"yo",
-"hii",
-"hola",
-"sup",
-"what's up",
-"how are you",
-"nice to meet you",
-"hey bot",
-"hello bot",
-"hi chatbot",
-"good day"
-],
-"responses": [
-"Hello!",
-"Hi there!",
-"Welcome!",
-"Nice to meet you!"
-]
-},
-
-{
-  "tag": "goodbye",
-  "patterns": [
-    "bye",
-    "goodbye",
-    "see you",
-    "see you later",
-    "take care",
-    "have a nice day",
-    "catch you later",
-    "talk to you later",
-    "bye bye",
-    "see ya",
-    "good night",
-    "farewell",
-    "i am leaving",
-    "got to go",
-    "have a good day",
-    "bye",
-"goodbye",
-"bye bye",
-"see you",
-"see ya",
-"farewell",
-"take care",
-"good night",
-"catch you later",
-"i am leaving",
-"got to go",
-"talk later",
-"talk to you later",
-"see you soon",
-"see you tomorrow",
-"have a nice day",
-"have a great day",
-"bye friend",
-"leaving now",
-"quit"
-  ],
-  "responses": [
-    "Goodbye!",
-    "See you later!",
-    "Take care!",
-    "Have a great day!"
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey",
+        "hii",
+        "hey there",
+        "hello there",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "good day",
+        "greetings",
+        "yo",
+        "sup",
+        "what is up",
+        "how are you",
+        "how are you doing",
+        "nice to meet you",
+        "hey bot",
+        "hello bot",
+        "hi chatbot",
+        "can we talk",
+        "start chat",
+        "is anyone there",
+        "are you there"
+      ],
+      "responses": [
+        "Hello! How can I help you?",
+        "Hi there! What would you like to know?",
+        "Welcome! How may I assist you?",
+        "Nice to meet you!"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "bye bye",
+        "see you",
+        "see you later",
+        "see you soon",
+        "see you tomorrow",
+        "see ya",
+        "farewell",
+        "take care",
+        "catch you later",
+        "talk later",
+        "talk to you later",
+        "i am leaving",
+        "i have to go",
+        "got to go",
+        "leaving now",
+        "good night",
+        "have a nice day",
+        "have a great day",
+        "quit",
+        "exit chat"
+      ],
+      "responses": [
+        "Goodbye!",
+        "See you later!",
+        "Take care!",
+        "Have a great day!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks",
+        "thank you",
+        "thank you so much",
+        "thanks a lot",
+        "many thanks",
+        "appreciate it",
+        "i appreciate it",
+        "thanks for helping",
+        "thank you for helping",
+        "thanks bot",
+        "thank you bot",
+        "thanks buddy",
+        "thx",
+        "ty",
+        "that was helpful",
+        "you helped me",
+        "great thanks",
+        "okay thanks"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Happy to help!",
+        "Anytime!",
+        "Glad I could help!"
+      ]
+    },
+    {
+      "tag": "about",
+      "patterns": [
+        "who are you",
+        "what are you",
+        "what is your name",
+        "tell me about yourself",
+        "introduce yourself",
+        "give your introduction",
+        "can you introduce yourself",
+        "tell me who you are",
+        "about you",
+        "who created you",
+        "what do you do",
+        "what can you do",
+        "are you a bot",
+        "are you ai",
+        "are you human",
+        "what kind of chatbot are you",
+        "tell me something about you",
+        "how were you built"
+      ],
+      "responses": [
+        "I am an NLP chatbot built using Python, Flask and machine learning.",
+        "I am an AI chatbot designed to answer questions and analyse user sentiment.",
+        "I can answer selected questions about programming, AI, careers and related topics."
+      ]
+    },
+    {
+      "tag": "emotion",
+      "patterns": [
+        "i am scared",
+        "i am sad",
+        "i am stressed",
+        "i am depressed",
+        "i feel lonely",
+        "i am worried",
+        "i feel anxious",
+        "i am nervous",
+        "i am upset",
+        "i feel bad",
+        "i feel terrible",
+        "i am unhappy",
+        "i need someone to talk to",
+        "i feel alone",
+        "i am frustrated",
+        "i am angry",
+        "i am happy",
+        "i am excited",
+        "i feel great",
+        "feeling scared",
+        "scared",
+        "im scared",
+        "i am confused"
+      ],
+      "responses": [
+        "I understand how you feel.",
+        "Would you like to talk about it?",
+        "I'm here to listen.",
+        "Take a slow breath and tell me what is bothering you."
+      ]
+    },
+    {
+      "tag": "python",
+      "patterns": [
+        "python",
+        "what is python",
+        "explain python",
+        "tell me about python",
+        "define python",
+        "python language",
+        "python programming",
+        "python coding",
+        "what does python do",
+        "where is python used",
+        "uses of python",
+        "applications of python",
+        "why use python",
+        "why should i learn python",
+        "is python easy",
+        "is python beginner friendly",
+        "features of python",
+        "advantages of python",
+        "python for artificial intelligence",
+        "python for machine learning",
+        "python for web development",
+        "python for data science",
+        "python libraries",
+        "python frameworks",
+        "learn python",
+        "how to learn python",
+        "python basics"
+      ],
+      "responses": [
+        "Python is a high-level programming language widely used in artificial intelligence, machine learning, web development, automation and data analysis.",
+        "Python is a readable and beginner-friendly programming language with a large ecosystem of libraries.",
+        "Python supports many areas including data science, backend development, scripting and AI."
+      ],
+      "sources": [
+        {
+          "title": "Python Documentation",
+          "url": "https://docs.python.org/3/"
+        }
+      ]
+    },
+    {
+      "tag": "html",
+      "patterns": [
+        "html",
+        "what is html",
+        "explain html",
+        "define html",
+        "tell me about html",
+        "html language",
+        "html full form",
+        "what does html mean",
+        "what does html do",
+        "uses of html",
+        "html basics",
+        "learn html",
+        "html tutorial",
+        "html tags",
+        "html elements",
+        "html code",
+        "html webpage",
+        "how html works",
+        "why use html",
+        "structure of a webpage"
+      ],
+      "responses": [
+        "HTML stands for HyperText Markup Language and is used to structure content on web pages.",
+        "HTML defines the structure of a webpage using elements such as headings, paragraphs, links and forms."
+      ],
+      "sources": [
+        {
+          "title": "MDN Web Docs - HTML",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+        }
+      ]
+    },
+    {
+      "tag": "css",
+      "patterns": [
+        "css",
+        "what is css",
+        "explain css",
+        "define css",
+        "tell me about css",
+        "css language",
+        "css full form",
+        "what does css mean",
+        "what does css do",
+        "uses of css",
+        "css styling",
+        "css design",
+        "css webpage",
+        "css basics",
+        "learn css",
+        "css tutorial",
+        "css properties",
+        "css selectors",
+        "how css works",
+        "why use css"
+      ],
+      "responses": [
+        "CSS stands for Cascading Style Sheets and is used to control the appearance and layout of web pages.",
+        "CSS styles HTML elements using properties such as colour, spacing, typography and layout."
+      ],
+      "sources": [
+        {
+          "title": "MDN Web Docs - CSS",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+        }
+      ]
+    },
+    {
+      "tag": "javascript",
+      "patterns": [
+        "javascript",
+        "js",
+        "what is javascript",
+        "explain javascript",
+        "define javascript",
+        "tell me about javascript",
+        "javascript language",
+        "js language",
+        "what does javascript do",
+        "uses of javascript",
+        "javascript programming",
+        "javascript code",
+        "javascript basics",
+        "learn javascript",
+        "javascript tutorial",
+        "javascript for websites",
+        "interactive websites",
+        "frontend scripting",
+        "how javascript works",
+        "why use javascript"
+      ],
+      "responses": [
+        "JavaScript is a programming language used to make websites interactive and dynamic.",
+        "JavaScript can update page content, handle user actions, communicate with servers and build web applications."
+      ],
+      "sources": [
+        {
+          "title": "MDN Web Docs - JavaScript",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+        }
+      ]
+    },
+    {
+      "tag": "flask",
+      "patterns": [
+        "flask",
+        "what is flask",
+        "explain flask",
+        "define flask",
+        "tell me about flask",
+        "flask framework",
+        "python flask",
+        "flask web development",
+        "what does flask do",
+        "uses of flask",
+        "flask application",
+        "flask backend",
+        "is flask a framework",
+        "learn flask",
+        "flask basics",
+        "why use flask"
+      ],
+      "responses": [
+        "Flask is a lightweight Python web framework used to build web applications and APIs.",
+        "Flask provides routing, request handling and template rendering while allowing developers to choose additional components."
+      ],
+      "sources": [
+        {
+          "title": "Flask Documentation",
+          "url": "https://flask.palletsprojects.com/"
+        }
+      ]
+    },
+    {
+      "tag": "machine_learning",
+      "patterns": [
+        "machine learning",
+        "what is machine learning",
+        "explain machine learning",
+        "define machine learning",
+        "what is ml",
+        "ml",
+        "how machine learning works",
+        "uses of machine learning",
+        "machine learning applications",
+        "machine learning basics",
+        "learn machine learning",
+        "machine learning models",
+        "supervised learning",
+        "unsupervised learning",
+        "classification",
+        "regression",
+        "machine learning algorithm",
+        "machine learning project",
+        "ml engineer",
+        "machine learning with python",
+        "difference between ai and ml",
+        "what does a machine learning engineer do"
+      ],
+      "responses": [
+        "Machine learning is a field of artificial intelligence in which systems learn patterns from data to make predictions or decisions.",
+        "Machine learning uses data and algorithms to improve performance on a task without explicitly programming every rule."
+      ],
+      "sources": [
+        {
+          "title": "Scikit-learn User Guide",
+          "url": "https://scikit-learn.org/stable/user_guide.html"
+        }
+      ]
+    },
+    {
+      "tag": "deep_learning",
+      "patterns": [
+        "deep learning",
+        "what is deep learning",
+        "explain deep learning",
+        "define deep learning",
+        "how deep learning works",
+        "deep neural networks",
+        "neural network",
+        "what is a neural network",
+        "cnn",
+        "rnn",
+        "transformer model",
+        "deep learning applications",
+        "deep learning basics",
+        "learn deep learning",
+        "deep learning with python",
+        "tensorflow",
+        "pytorch",
+        "difference between ml and deep learning"
+      ],
+      "responses": [
+        "Deep learning is a branch of machine learning that uses multi-layer neural networks to learn complex patterns from data.",
+        "Deep learning is commonly used in computer vision, speech recognition, natural language processing and generative AI."
+      ],
+      "sources": [
+        {
+          "title": "TensorFlow Guide",
+          "url": "https://www.tensorflow.org/guide"
+        }
+      ]
+    },
+    {
+      "tag": "nlp",
+      "patterns": [
+        "nlp",
+        "what is nlp",
+        "natural language processing",
+        "explain nlp",
+        "define natural language processing",
+        "how nlp works",
+        "nlp applications",
+        "nlp basics",
+        "learn nlp",
+        "text classification",
+        "sentiment analysis",
+        "chatbot nlp",
+        "language processing",
+        "tokenization",
+        "stemming",
+        "lemmatization",
+        "intent classification",
+        "text preprocessing"
+      ],
+      "responses": [
+        "Natural Language Processing is a field of AI that helps computers analyse, understand and generate human language.",
+        "NLP is used in chatbots, sentiment analysis, translation, text classification and information extraction."
+      ],
+      "sources": [
+        {
+          "title": "NLTK Documentation",
+          "url": "https://www.nltk.org/"
+        }
+      ]
+    },
+    {
+      "tag": "computer_vision",
+      "patterns": [
+        "computer vision",
+        "what is computer vision",
+        "explain computer vision",
+        "define computer vision",
+        "image recognition",
+        "image classification",
+        "object detection",
+        "face detection",
+        "opencv",
+        "computer vision applications",
+        "computer vision basics",
+        "learn computer vision",
+        "vision model",
+        "cnn for images",
+        "image processing",
+        "computer vision project"
+      ],
+      "responses": [
+        "Computer vision is a field of AI that enables computers to analyse and interpret images and videos.",
+        "Computer vision is used for image classification, object detection, facial recognition and medical image analysis."
+      ],
+      "sources": [
+        {
+          "title": "OpenCV Documentation",
+          "url": "https://docs.opencv.org/"
+        }
+      ]
+    },
+    {
+      "tag": "sql",
+      "patterns": [
+        "sql",
+        "what is sql",
+        "explain sql",
+        "define sql",
+        "sql language",
+        "database query language",
+        "what does sql do",
+        "uses of sql",
+        "sql basics",
+        "learn sql",
+        "sql query",
+        "select query",
+        "insert query",
+        "update query",
+        "delete query",
+        "database management",
+        "relational database",
+        "mysql",
+        "postgresql"
+      ],
+      "responses": [
+        "SQL is a language used to create, read, update and manage data in relational databases.",
+        "SQL allows applications to query and modify structured data stored in tables."
+      ],
+      "sources": [
+        {
+          "title": "PostgreSQL SQL Documentation",
+          "url": "https://www.postgresql.org/docs/current/sql.html"
+        }
+      ]
+    },
+    {
+      "tag": "git_github",
+      "patterns": [
+        "git",
+        "github",
+        "what is git",
+        "what is github",
+        "explain git",
+        "explain github",
+        "git version control",
+        "github repository",
+        "git commit",
+        "git push",
+        "git pull",
+        "git clone",
+        "git branch",
+        "how to use git",
+        "how to use github",
+        "upload project to github",
+        "push code to github",
+        "version control",
+        "github portfolio",
+        "git basics"
+      ],
+      "responses": [
+        "Git is a distributed version-control system, while GitHub is a platform for hosting and collaborating on Git repositories.",
+        "Git tracks code changes locally, and GitHub lets you store, share and collaborate on repositories online."
+      ],
+      "sources": [
+        {
+          "title": "Git Documentation",
+          "url": "https://git-scm.com/doc"
+        }
+      ]
+    },
+    {
+      "tag": "dsa",
+      "patterns": [
+        "dsa",
+        "data structures",
+        "algorithms",
+        "what is dsa",
+        "explain dsa",
+        "learn dsa",
+        "dsa preparation",
+        "dsa interview",
+        "data structures and algorithms",
+        "array",
+        "linked list",
+        "stack",
+        "queue",
+        "tree",
+        "graph",
+        "sorting algorithms",
+        "searching algorithms",
+        "dynamic programming",
+        "leetcode",
+        "coding interview preparation"
+      ],
+      "responses": [
+        "DSA stands for Data Structures and Algorithms and is important for writing efficient programs and preparing for technical interviews.",
+        "Start with arrays, strings, linked lists, stacks, queues and hashing before moving to trees, graphs and dynamic programming."
+      ],
+      "sources": [
+        {
+          "title": "Python Data Structures Documentation",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html"
+        }
+      ]
+    },
+    {
+      "tag": "internship",
+      "patterns": [
+        "internship",
+        "i need an internship",
+        "i want an internship",
+        "how to get an internship",
+        "how can i get an internship",
+        "where to find internships",
+        "apply for internship",
+        "internship preparation",
+        "internship advice",
+        "internship tips",
+        "software internship",
+        "machine learning internship",
+        "ai internship",
+        "paid internship",
+        "high paying internship",
+        "best internship",
+        "student internship",
+        "internship for freshers",
+        "off campus internship",
+        "internship application",
+        "internship resume",
+        "internship interview"
+      ],
+      "responses": [
+        "Build two or three strong projects, prepare a focused resume, practise interview questions and apply consistently through company portals and professional networks.",
+        "For internships, strengthen your fundamentals, keep GitHub projects documented and tailor your resume to each role.",
+        "Apply early, track applications and prepare to explain your projects clearly in interviews."
+      ]
+    },
+    {
+      "tag": "interview",
+      "patterns": [
+        "interview",
+        "job interview",
+        "technical interview",
+        "machine learning interview",
+        "ai interview",
+        "internship interview",
+        "placement interview",
+        "interview preparation",
+        "prepare for interview",
+        "how to crack interview",
+        "crack interviews",
+        "interview tips",
+        "mock interview",
+        "coding interview",
+        "hr interview",
+        "tell me about yourself interview",
+        "project interview questions",
+        "ml interview questions",
+        "python interview questions",
+        "interview confidence"
+      ],
+      "responses": [
+        "Prepare core concepts, practise coding, revise your projects and answer using a clear problem-action-result structure.",
+        "For technical interviews, practise DSA, machine learning theory, SQL, Python and project explanations.",
+        "Use mock interviews to improve communication, confidence and time management."
+      ]
+    },
+    {
+      "tag": "resume",
+      "patterns": [
+        "resume",
+        "resume tips",
+        "resume building",
+        "build my resume",
+        "improve my resume",
+        "how to make resume",
+        "internship resume",
+        "machine learning resume",
+        "ai resume",
+        "software resume",
+        "resume projects",
+        "resume skills",
+        "resume format",
+        "ats resume",
+        "resume for fresher",
+        "resume for student",
+        "project description for resume",
+        "resume mistakes",
+        "one page resume",
+        "github link in resume"
+      ],
+      "responses": [
+        "Keep your resume concise, quantify results, highlight relevant skills and include links to well-documented projects.",
+        "Use a one-page resume with clear sections for education, skills, projects, experience and achievements.",
+        "Write project bullets that explain what you built, which technologies you used and what measurable result you achieved."
+      ]
+    },
+    {
+      "tag": "career",
+      "patterns": [
+        "career",
+        "career advice",
+        "career guidance",
+        "career in ai",
+        "career in machine learning",
+        "software career",
+        "job preparation",
+        "placement preparation",
+        "campus placement",
+        "off campus placement",
+        "how to get a job",
+        "software engineer job",
+        "machine learning engineer job",
+        "ai engineer career",
+        "data scientist career",
+        "career roadmap",
+        "skills for placement",
+        "freshers job",
+        "high paying job",
+        "career growth"
+      ],
+      "responses": [
+        "Choose a target role, build the required fundamentals, create strong projects and practise interviews consistently.",
+        "A good career plan combines technical skills, communication, project depth, networking and regular applications.",
+        "For AI and machine learning roles, strengthen Python, SQL, statistics, ML theory, deployment and DSA."
+      ]
+    },
+    {
+      "tag": "insult",
+      "patterns": [
+        "dumb",
+        "stupid",
+        "idiot",
+        "useless",
+        "bad bot",
+        "terrible bot",
+        "worst chatbot",
+        "you are dumb",
+        "you are stupid",
+        "you are useless",
+        "not helpful",
+        "fool",
+        "annoying bot",
+        "poor chatbot",
+        "bad assistant",
+        "waste of time",
+        "you know nothing"
+      ],
+      "responses": [
+        "I'm still learning and improving.",
+        "I'll try to do better.",
+        "Thanks for the feedback.",
+        "Please rephrase your question and I'll try again."
+      ]
+    }
   ]
-},
-
-{
-  "tag": "thanks",
-  "patterns": [
-    "thanks",
-    "thank you",
-    "thanks a lot",
-    "thank you so much",
-    "appreciate it",
-    "many thanks",
-    "thx",
-    "ty",
-    "thank you bot",
-    "thanks for helping",
-    "thanks buddy",
-    "thanks chatbot"
-  ],
-  "responses": [
-    "You're welcome!",
-    "Happy to help!",
-    "Anytime!",
-    "Glad I could help!"
-  ]
-},
-
-{
-  "tag": "about",
-  "patterns": [
-    "who are you",
-    "what are you",
-    "tell me about yourself",
-    "introduce yourself",
-    "what is your name",
-    "about you",
-    "who created you",
-    "what do you do",
-    "can you introduce yourself",
-    "tell me who you are",
-    "what kind of chatbot are you",
-    "are you ai",
-    "are you a bot",
-    "your introduction",
-    "tell me something about you"
-  ],
-  "responses": [
-    "I am an NLP chatbot built using Python and Flask.",
-    "I am an AI chatbot designed to answer questions and assist users.",
-    "I can help answer questions related to programming, careers, and more."
-  ]
-},
-
-{
-  "tag": "emotion",
-  "patterns": [
-    "i am scared",
-    "i am sad",
-    "i am stressed",
-    "i am depressed",
-    "i feel lonely",
-    "i am happy",
-    "i am excited",
-    "im scared",
-    "i'm scared",
-    "scared",
-    "feeling scared",
-    "i am worried",
-    "i feel anxious",
-    "i am nervous",
-    "i am upset"
-  ],
-  "responses": [
-    "I understand how you feel.",
-    "Would you like to talk about it?",
-    "I'm here to listen."
-  ]
-},
-
-{
-  "tag": "career",
-  "patterns": [
-    "internship",
-    "i need internship",
-    "how to get internship",
-    "placement",
-    "job",
-    "career advice",
-    "resume tips",
-    "interview tips",
-    "crack interviews",
-    "how to crack interviews",
-    "placement preparation",
-    "campus placement",
-    "software job",
-    "job preparation",
-    "career guidance",
-    "how to get a job",
-    "resume building",
-    "linkedin tips",
-    "interview preparation",
-    "off campus placement",
-    "best internship",
-    "high paying internship",
-    "software engineer job",
-    "freshers job"
-  ],
-  "responses": [
-    "Build projects and practice DSA regularly.",
-    "Keep improving your GitHub portfolio.",
-    "Focus on skills and internships.",
-    "Create a strong resume and LinkedIn profile."
-  ]
-},
-
-{
-  "tag": "programming",
-  "patterns": [
-    "python",
-    "what is python",
-    "python language",
-    "python programming",
-    "tell me about python",
-    "explain python",
-    "do you know python",
-    "python libraries",
-    "python framework",
-    "what can python do",
-    "why use python",
-    "python uses",
-    "learn python",
-    "python coding",
-    "python development"
-  ],
-  "responses": [
-    "Python is a popular programming language used for AI, ML, Web Development and Automation.",
-    "Python is one of the most widely used programming languages.",
-    "Python is beginner-friendly and powerful for software development."
-  ]
-},
-
-{
-  "tag": "html",
-  "patterns": [
-    "html",
-    "what is html",
-    "html language",
-    "tell me about html",
-    "explain html",
-    "html full form",
-    "what does html mean",
-    "define html",
-    "about html",
-    "html basics",
-    "learn html",
-    "html tags",
-    "html webpage",
-    "html code",
-    "html tutorial"
-  ],
-  "responses": [
-    "HTML stands for HyperText Markup Language and is used to structure web pages."
-  ]
-},
-
-{
-  "tag": "css",
-  "patterns": [
-    "css",
-    "what is css",
-    "css language",
-    "tell me about css",
-    "explain css",
-    "define css",
-    "css full form",
-    "what does css mean",
-    "css styling",
-    "css design",
-    "css webpage",
-    "css tutorial",
-    "learn css",
-    "css basics",
-    "css properties"
-  ],
-  "responses": [
-    "CSS stands for Cascading Style Sheets and is used to style web pages."
-  ]
-},
-
-{
-  "tag": "javascript",
-  "patterns": [
-    "javascript",
-    "js",
-    "what is javascript",
-    "tell me about javascript",
-    "javascript language",
-    "define javascript",
-    "explain javascript",
-    "javascript basics",
-    "learn javascript",
-    "javascript tutorial",
-    "what does javascript do",
-    "javascript programming",
-    "javascript code",
-    "js language",
-    "about javascript"
-  ],
-  "responses": [
-    "JavaScript is used to make web pages interactive and dynamic."
-  ]
-},
-
-{
-  "tag": "ai_ml",
-  "patterns": [
-    "what is ai",
-    "artificial intelligence",
-    "machine learning",
-    "deep learning",
-    "what is ml",
-    "ai projects",
-    "ml projects",
-    "ai engineer",
-    "learn machine learning",
-    "learn ai",
-    "neural networks",
-    "computer vision",
-    "nlp",
-    "generative ai",
-    "chatgpt"
-  ],
-  "responses": [
-    "AI enables machines to perform tasks that normally require human intelligence.",
-    "Machine Learning is a subset of AI that allows systems to learn from data.",
-    "AI and ML are among the fastest-growing fields in technology."
-  ]
-},
-
-{
-  "tag": "insult",
-  "patterns": [
-    "dumb",
-    "stupid",
-    "idiot",
-    "useless",
-    "bad bot",
-    "worst chatbot",
-    "you are dumb",
-    "you are stupid",
-    "not helpful",
-    "fool",
-    "annoying bot",
-    "poor chatbot",
-    "waste chatbot",
-    "bad assistant",
-    "terrible bot"
-  ],
-  "responses": [
-    "I'm still learning and improving.",
-    "I'll try to do better.",
-    "Let's continue the conversation.",
-    "Thanks for the feedback."
-  ]
-}
-]
 }

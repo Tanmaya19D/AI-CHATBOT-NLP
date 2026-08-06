@@ -1,25 +1,59 @@
 import re
-import nltk
 
-from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-nltk.download("stopwords")
-nltk.download("wordnet")
 
 lemmatizer = WordNetLemmatizer()
-stop_words = set(stopwords.words("english"))
 
 
-import re
+def preprocess(text: str) -> str:
+    """
+    Clean and normalize text before training or prediction.
+    The same function must be used in train.py and chatbot.py.
+    """
 
-def preprocess(text):
+    if not isinstance(text, str):
+        return ""
 
-    text = text.lower()
+    text = text.lower().strip()
 
-    text = text.replace("i'm", "i am")
-    text = text.replace("im", "i am")
+    contractions = {
+        "i'm": "i am",
+        "im": "i am",
+        "what's": "what is",
+        "whats": "what is",
+        "can't": "cannot",
+        "cant": "cannot",
+        "don't": "do not",
+        "dont": "do not",
+        "doesn't": "does not",
+        "doesnt": "does not",
+        "won't": "will not",
+        "wont": "will not",
+        "isn't": "is not",
+        "isnt": "is not",
+        "aren't": "are not",
+        "arent": "are not",
+        "couldn't": "could not",
+        "couldnt": "could not",
+        "wouldn't": "would not",
+        "wouldnt": "would not"
+    }
 
-    text = re.sub(r"[^a-zA-Z\s]", "", text)
+    for old_text, new_text in contractions.items():
+        text = text.replace(old_text, new_text)
 
-    return text
+    # Keep letters, numbers and spaces only
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+
+    # Remove repeated spaces
+    text = re.sub(r"\s+", " ", text).strip()
+
+    words = text.split()
+
+    lemmatized_words = [
+        lemmatizer.lemmatize(word)
+        for word in words
+    ]
+
+    return " ".join(lemmatized_words)
