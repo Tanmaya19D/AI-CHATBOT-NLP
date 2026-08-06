@@ -1,12 +1,34 @@
+from pathlib import Path
 import sqlite3
-from werkzeug.security import generate_password_hash, check_password_hash
 
-DB_PATH = "database/chat_history.db"
+from werkzeug.security import (
+    generate_password_hash,
+    check_password_hash
+)
 
+# ==========================================
+# Database Path
+# ==========================================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASE_DIR = BASE_DIR / "database"
+DATABASE_DIR.mkdir(exist_ok=True)
+
+DB_PATH = DATABASE_DIR / "chat_history.db"
+
+
+def get_connection():
+    return sqlite3.connect(DB_PATH)
+
+
+# ==========================================
+# Create Users Table
+# ==========================================
 
 def create_users_table():
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -22,17 +44,26 @@ def create_users_table():
     conn.close()
 
 
+# ==========================================
+# Register User
+# ==========================================
+
 def register_user(username, email, password):
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
 
     hashed_password = generate_password_hash(password)
 
     try:
+
         cursor.execute("""
-        INSERT INTO users(username,email,password)
-        VALUES(?,?,?)
+        INSERT INTO users(
+            username,
+            email,
+            password
+        )
+        VALUES (?, ?, ?)
         """, (
             username,
             email,
@@ -40,24 +71,31 @@ def register_user(username, email, password):
         ))
 
         conn.commit()
+
         return True
 
     except sqlite3.IntegrityError:
+
         return False
 
     finally:
+
         conn.close()
 
 
+# ==========================================
+# Login User
+# ==========================================
+
 def login_user(username, password):
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
-    SELECT id,password
+    SELECT id, password
     FROM users
-    WHERE username=?
+    WHERE username = ?
     """, (username,))
 
     user = cursor.fetchone()
