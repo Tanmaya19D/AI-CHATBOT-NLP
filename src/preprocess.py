@@ -1,15 +1,12 @@
 import re
 
-from nltk.stem import WordNetLemmatizer
-
-
-lemmatizer = WordNetLemmatizer()
-
 
 def preprocess(text: str) -> str:
     """
-    Clean and normalize text before training or prediction.
-    The same function must be used in train.py and chatbot.py.
+    Clean user text for training and prediction.
+
+    This version does not require downloaded NLTK datasets,
+    making it safer for Render deployment.
     """
 
     if not isinstance(text, str):
@@ -33,11 +30,7 @@ def preprocess(text: str) -> str:
         "isn't": "is not",
         "isnt": "is not",
         "aren't": "are not",
-        "arent": "are not",
-        "couldn't": "could not",
-        "couldnt": "could not",
-        "wouldn't": "would not",
-        "wouldnt": "would not"
+        "arent": "are not"
     }
 
     for old_text, new_text in contractions.items():
@@ -49,11 +42,4 @@ def preprocess(text: str) -> str:
     # Remove repeated spaces
     text = re.sub(r"\s+", " ", text).strip()
 
-    words = text.split()
-
-    lemmatized_words = [
-        lemmatizer.lemmatize(word)
-        for word in words
-    ]
-
-    return " ".join(lemmatized_words)
+    return text
