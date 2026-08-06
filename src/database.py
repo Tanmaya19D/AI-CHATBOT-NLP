@@ -1,8 +1,29 @@
 import sqlite3
+from pathlib import Path
+
+# ==========================
+# Database Path
+# ==========================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASE_DIR = BASE_DIR / "database"
+DATABASE_DIR.mkdir(exist_ok=True)
+
+DATABASE_PATH = DATABASE_DIR / "chat_history.db"
+
+
+def get_connection():
+    return sqlite3.connect(DATABASE_PATH)
+
+
+# ==========================
+# Create Database
+# ==========================
 
 def create_database():
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -19,9 +40,13 @@ def create_database():
     conn.close()
 
 
+# ==========================
+# Save Chat
+# ==========================
+
 def save_chat(user_msg, bot_msg, sentiment):
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
@@ -40,9 +65,13 @@ def save_chat(user_msg, bot_msg, sentiment):
     conn.close()
 
 
+# ==========================
+# Get All Chats
+# ==========================
+
 def get_all_chats():
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -62,9 +91,13 @@ def get_all_chats():
     return chats
 
 
+# ==========================
+# Chat Count
+# ==========================
+
 def get_chat_count():
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -79,9 +112,13 @@ def get_chat_count():
     return count
 
 
+# ==========================
+# Sentiment Count
+# ==========================
+
 def get_sentiment_count(sentiment):
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
@@ -100,9 +137,13 @@ def get_sentiment_count(sentiment):
     return count
 
 
+# ==========================
+# Recent Chats
+# ==========================
+
 def get_recent_chats():
 
-    conn = sqlite3.connect("database/chat_history.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
