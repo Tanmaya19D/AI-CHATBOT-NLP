@@ -168,7 +168,7 @@ http://127.0.0.1:5000
 * Multi-language Support
 * Chat Export to CSV/PDF
 * Dark/Light Theme Toggle
-* Deployment on Render
+
 
 
 
